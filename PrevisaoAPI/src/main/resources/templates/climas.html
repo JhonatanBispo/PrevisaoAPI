@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Clima em trenós</title>
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
+	integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt"
+	crossorigin="anonymous">
+
+
+<link rel="stylesheet" th:href="@{/estilo.css}">
+
+</head>
+<body>
+	<blockquote class="blockquote text-center">
+		<h1 class="display-3">Previsão do Tempo</h1>
+		<footer class="blockquote-footer">
+			<a href="/buscarPrev/cidade/1" class="externalLink">Atualizar</a>
+		</footer>
+	</blockquote>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+				<form action="/buscarCidade" method="post">
+					<h5>Selecionar Cidade:</h5>
+					<input type="text" name="nome" placeholder="Nome Cidade">
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</form>
+			</div>
+			<div class="col-sm">
+				<form class="ml-5" action="/buscarLateLon" method="post">
+					<h5>Buscar por Longitude e Latitude:</h5>
+					<input type="text" name="lon" placeholder="Longitude"> <input
+						type="text" name="lat" placeholder="Latitude">
+					<button type="submit" class="btn btn-primary">Buscar</button>
+				</form>
+			</div>
+			<div class="col-sm">
+				<form action="/tempo" method="post">
+					<input type="submit" value="Buscar Todos"
+						class="btn btn-primary mr-5 my-5 float-right">
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="panel-body mx-5">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Cidade</th>
+					<th>Nome do dia na semana</th>
+					<th>Temperatura mínima</th>
+					<th>Temperatura máxima</th>
+					<th>Umidade relativa do ar</th>
+					<th>Data e Hora</th>
+					<th>Latitude</th>
+					<th>Longitude</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tempo : ${tempos}">
+					<td th:text="${tempo.cidade.nome}"></td>
+					<td th:text="${tempo.diaSemana.dia}"></td>
+					<td th:text="${tempo.temperaturaMin}"></td>
+					<td th:text="${tempo.temperaturaMax}"></td>
+					<td th:text="${tempo.humidade}"></td>
+					<td th:text="${tempo.dataHora}"></td>
+					<td th:text="${tempo.cidade.latitude}"></td>
+					<td th:text="${tempo.cidade.longitude}"></td>
+					<!-- <td th:text="${tempo.discricao}"></td> -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+
+	<br>
+	<br>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

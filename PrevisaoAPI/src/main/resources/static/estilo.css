@@ -1,0 +1,36 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: grey;
+	background-image: url("ceu_azul.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+h1 {
+	color: lime;
+}
+
+h5 {
+	color: lime;
+}
+
+th {
+	font-family: 'Arial', cursive;
+	color: blue;
+}
+
+th:hover {
+	color: blue;
+}
+
+td {
+	font-family: 'Arial', cursive;
+	color: #80ecff;
+	text-decoration: underline;
+}
+
+td:hover {
+	font-weight: bold;
+	color: blue;
+}
